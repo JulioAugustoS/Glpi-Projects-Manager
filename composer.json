@@ -1,0 +1,13 @@
+{
+    "name": "Projects",
+    "description": "Plugin para gerenciamento de projetos no GLPI",
+    "authors": [
+        {
+            "name": "Julio Augusto",
+            "email": "julioaugustoms@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.8"
+    }
+}

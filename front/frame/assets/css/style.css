@@ -1,0 +1,10 @@
+body {
+    width: 100%;
+    height: auto;
+    /*background: #e0e0e0 !important;
+    border-radius: 5px !important;*/
+}
+
+.paddBody {
+    padding: 20px;
+}
