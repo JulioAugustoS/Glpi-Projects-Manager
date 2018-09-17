@@ -43,6 +43,6 @@ if($_SESSION["glpiactiveprofile"]["interface"] == "central"){
     Html::header("Project Manager", $_SERVER['PHP_SELF'], "plugins", "pluginprojectsprojects");   
 }
 
-echo __('<iframe src="./frame/homeProject.php" name="homeProjects" style="width:100%;" height="1000" frameborder="0"></iframe>', 'projects');
+echo __('<iframe src="./frame/homeProject.php" name="homeProjects" style="width:100%;height:800px !important;" height="800" frameborder="0"></iframe>', 'projects');
 
 Html::footer();

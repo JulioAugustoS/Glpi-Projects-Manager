@@ -1,18 +1,15 @@
 <?php
 
 include('../../../../inc/includes.php');
-//require_once('autoload.php');
+require_once('autoload.php');
 
 define('GLPI_URL', 'http://localhost/glpi/front/');
 
-include('inc/consult.class.php');
-include('inc/home.class.php');
+//include('inc/consult.class.php');
+//include('inc/home.class.php');
 
-    $home = new Home();    
-
+    $home = new Home();  
     $projetos = new Consult();
-
-    
 
 ?>
 <!DOCTYPE html>
@@ -23,6 +20,8 @@ include('inc/home.class.php');
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="assets/css/style.css">
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/alertify.min.css">
+        <link rel="stylesheet" href="assets/css/themes/bootstrap.min.css">
     </head>
     <body>
         <section class="container-fluid paddBody">
@@ -56,4 +55,6 @@ include('inc/home.class.php');
 
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/alertify.js"></script>
+    <script src="assets/js/functions.js"></script>
 </html>

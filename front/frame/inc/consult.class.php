@@ -37,7 +37,7 @@
    ------------------------------------------------------------------------
  */
 
-require_once('functions.class.php');
+//require_once('functions.class.php');
 
 class Consult extends Functions {
 /*
@@ -87,6 +87,7 @@ class Consult extends Functions {
 
 	}
 */
+
 	function Projetos(){
 
 		global $DB, $CFG_GLPI;
@@ -169,7 +170,7 @@ class Consult extends Functions {
 												WHERE projecttasks_id = ".$listTarefa['id']."
 											";
 						$sqlTicketTask = $DB->query($consultaTicketTask) or die('Erro ao buscar os chamados da Task');
-						//$returnTicketTask = $DB->fetch_assoc($sqlTicketTask);
+						$returnTicketTask = $DB->fetch_assoc($sqlTicketTask);
 						
 						echo '<div class="card">';
 						echo '<div class="card-header" id="tarefas'.$listTarefa['id'].'">';
@@ -189,9 +190,47 @@ class Consult extends Functions {
 								  </div>';
 						else:	
 
+							$consultaTickets = "SELECT 
+												a.id 					AS Id,
+												a.name					AS Titulo,
+												b.name			 		AS Categoria,
+												c.firstname			 	AS NomeRequerente,
+												c.realname				AS SobRequerente,
+												a.status				AS Status,
+												a.priority				AS Prioridade
+											FROM glpi_tickets a
+											
+											LEFT JOIN glpi_itilcategories b
+												ON (b.id = a.itilcategories_id)
+												
+											LEFT JOIN glpi_users c 
+												ON (c.id = a.users_id_recipient)
+											
+											WHERE a.id = ".$returnTicketTask['tickets_id']."
+										"; 
+							$sqlTickets = $DB->query($consultaTickets) or die('Erro ao buscar os chamados');
+
+							echo '<table class="table table-striped"><thead>';
+							echo '<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Título</th>
+									<th scope="col">Categoria</th>
+									<th scope="col">Requerente</th>
+									<th scope="col">Status</th>
+									<th scope="col">Prioridade</th>	
+								  </tr></thead><tbody>';
+							while($listTickets = $DB->fetch_assoc($sqlTickets)):
+								echo '<tr>
+										<td>'.$listTickets['Id'].'</td>
+										<td>'.$listTickets['Titulo'].'</td>
+										<td>'.$listTickets['Categoria'].'</td>
+										<td>'.$listTickets['NomeRequerente'].' '.$listTickets['SobRequerente'].'</td>
+										<td class="muda_status"><button class="btn btn-link" onclick="mudarStatus('.$listTickets['Id'].', '.$listTickets['Status'].')">'.Functions::conv_status($listTickets['Status']).'</button></td>
+									  </tr>';
+								echo '</tbody></table>';
+							endwhile;	
+							
 						endif;	
-
-
 
 						echo '</div></div></div>';
 

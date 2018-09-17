@@ -39,6 +39,47 @@
 
 class Functions {
 
+    function conv_status($status){
+
+        switch ($status) {
+            case 1:
+                $status = 'Novo';
+                break;
+            case 2:
+                $status = 'Processando';
+                break;
+            case 3:
+                $status = 'Processando Planejado';
+                break;
+            case 4:
+                $status = 'Pendente';
+                break;
+            case 5:
+                $status = 'Solucionado';
+                break;
+            default:
+                $status = 'Fechado';
+                break;
+        }
+
+        return $status;
+
+    }
+
+    function conv_prioridade($prioridade){
+
+        switch ($prioridade) {
+            case 'value':
+                # code...
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+    }
+
     function conv_data($data) {
         if($data != "") {
             $source = $data;
