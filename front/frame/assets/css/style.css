@@ -8,3 +8,7 @@ body {
 .paddBody {
     padding: 20px;
 }
+
+.card-header {
+    padding: .20rem 1.2rem !important;
+}

@@ -3,35 +3,35 @@
 /*
    ------------------------------------------------------------------------
    Projects
-   Copyright (C) 2018 by the Projects Development Team.
+   Copyright (C) 2018 by the Projects Manager Development Team.
 
-   https://github.com/JulioAugustoS/projects
+   https://github.com/JulioAugustoS/projectsmanager
    ------------------------------------------------------------------------
 
    LICENSE
 
-   This file is part of TimelineTicket project.
+   This file is part of ProjectsManager project.
 
-   TimelineTicket plugin is free software: you can redistribute it and/or modify
+   ProjectsManager plugin is free software: you can redistribute it and/or modify
    it under the terms of the GNU Affero General Public License as published by
    the Free Software Foundation, either version 3 of the License, or
    (at your option) any later version.
 
-   TimelineTicket plugin is distributed in the hope that it will be useful,
+   ProjectsManager plugin is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
    GNU Affero General Public License for more details.
 
    You should have received a copy of the GNU Affero General Public License
-   along with TimelineTicket plugin. If not, see <http://www.gnu.org/licenses/>.
+   along with ProjectsManager plugin. If not, see <http://www.gnu.org/licenses/>.
 
    ------------------------------------------------------------------------
 
-   @package   Projects plugin
-   @copyright Copyright (c) 2018 Projects team
+   @package   Projects Manager plugin
+   @copyright Copyright (c) 2018 Projects Manager team
    @license   AGPL License 3.0 or (at your option) any later version
               http://www.gnu.org/licenses/agpl-3.0-standalone.html
-   @link      https://github.com/pluginsGLPI/timelineticket
+   @link      https://github.com/JulioAugustoS/projectsmanager
    @since     2018
 
    ------------------------------------------------------------------------
@@ -69,14 +69,24 @@ class Functions {
     function conv_prioridade($prioridade){
 
         switch ($prioridade) {
-            case 'value':
-                # code...
+            case '1':
+                $prioridade = 'Muito Baixa';
                 break;
-            
+            case '2':
+                $prioridade = 'Baixa';
+                break;
+            case '3':
+                $prioridade = 'Média';
+                break;
+            case '4':
+                $prioridade = 'Alta';
+                break;
             default:
-                # code...
+                $prioridade = 'Muito Alta';
                 break;
         }
+
+        return $prioridade;
 
     }
 
@@ -117,14 +127,22 @@ class Functions {
         }
     }
 
+    function conv_datas_milseg($dataInicial, $dataFinal){
 
-    function calculaDatas($data) {
+        $data = strtotime($dataInicial) - strtotime($dataFinal);
+    
+        //return $data;
+        return gmdate("H:i:s", $data);
 
-        $data_inicial = conv_data($data);
-        $data_final = date('d-m-Y');
+    }
+
+    function calculaDatas($dataInicial, $dataFinal) {
+
+        //$data_inicial = $dataInicial;
+        //$data_final = $dataFinal;
 
         // Calcula a diferença em segundos entre as datas
-        $diferenca = strtotime($data_final) - strtotime($data_inicial);
+        $diferenca =  strtotime($dataInicial) - strtotime($dataFinal);
 
         //Calcula a diferença em dias
         $dias = floor($diferenca / (60 * 60 * 24));
@@ -133,9 +151,19 @@ class Functions {
 
     }
 
+    function modificaId($id){
 
-    function time_ext($solvedate)
-    {
+        if($id < 10):
+            $retorno = '0' . $id;
+        else:
+            $retorno = $id;
+        endif;
+
+        return $retorno;
+
+    } 
+
+    function time_ext($solvedate){
 
     $time = $solvedate; // time duration in seconds
 
@@ -161,8 +189,7 @@ class Functions {
     }
 
 
-    function time_hrs($time)
-    {
+    function time_hrs($time){
 
     if ($time == 0){
             return '';
