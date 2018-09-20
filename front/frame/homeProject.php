@@ -59,7 +59,6 @@ require_once('autoload.php');
     </head>
     <body>
         <section class="container-fluid paddBody">
-            <?php include('includes/header.php'); ?>
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
